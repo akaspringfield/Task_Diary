@@ -1,7 +1,11 @@
-# YT Vid using HTML + Django
+# Tick List
 
 ```
-Mini Youtube Video library app, for saving and making a library of all favourate YouTube videos and provision to login  so that multiple users can make multi profile on basis of their likings.
+
+An fully customizable app for todo.
+Individual user can login and make todos.
+Can arrange todo in order of 3 category.
+
 
 ```
 
@@ -9,7 +13,7 @@ Mini Youtube Video library app, for saving and making a library of all favourate
 
 ```
 * Frontend : HTML CSS
-* Backend : Django
+* Backend : Django REST
 * Database : SQLLite/MySQL
 
 ```
@@ -19,7 +23,7 @@ Mini Youtube Video library app, for saving and making a library of all favourate
 Git Clone
 
 ```
-git clone https://github.com/akaspringfield/YT-Vid-Database.git
+git clone https://github.com/akaspringfield/Tick-List-UserLogin
 
 
 ```
@@ -37,4 +41,6 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
 # Open http://127.0.0.1:8000/posts/
+
 ```
+Use pip install requirement.txt for supporting packages
