@@ -6,9 +6,6 @@ An fully customizable app for todo.
 Individual user can login and make todos.
 Can arrange todo in order of 3 category.
 
-
-[Click hear](https://tic-todo.herokuapp.com/) to view
-
 ```
 
 ## Tech used
@@ -46,3 +43,6 @@ python manage.py runserver
 
 ```
 Use pip install requirement.txt for supporting packages
+
+
+- Live deployment [Click hear](https://tic-todo.herokuapp.com/)  to view
