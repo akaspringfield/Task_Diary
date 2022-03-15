@@ -7,6 +7,8 @@ Individual user can login and make todos.
 Can arrange todo in order of 3 category.
 
 
+[Click hear]  (https://tic-todo.herokuapp.com/) to view
+
 ```
 
 ## Tech used
