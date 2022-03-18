@@ -1,10 +1,10 @@
-# Tick List
+# Task Diary
 
 ```
 
-An fully customizable app for todo.
-Individual user can login and make todos.
-Can arrange todo in order of 3 category.
+An fully customizable app for listing out all task.
+Individual user can login and make new task and give priority accordingly.
+Can arrange task in different category.
 
 ```
 
@@ -22,7 +22,7 @@ Can arrange todo in order of 3 category.
 Git Clone
 
 ```
-git clone https://github.com/akaspringfield/Tick-List-UserLogin
+git clone https://github.com/akaspringfield/Task_Diary
 
 
 ```
