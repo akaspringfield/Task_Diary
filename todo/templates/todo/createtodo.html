@@ -1,34 +1,84 @@
 {% extends "todo/base.html" %}
 
 {% block content %}
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-5">
-            <h2>New Todo</h2>
-        </div>
-    </div>
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-5">
-            {% if error %}
-                <div class="alert alert-danger" role="alert">
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-7 col-lg-6">
+
+        <div class="card shadow-lg border-0"
+             style="background: rgba(255,255,255,0.15);
+                    backdrop-filter: blur(10px);
+                    border-radius:20px;
+                    color:white;">
+
+            <div class="card-body p-5">
+
+                <h2 class="text-center font-weight-bold mb-2">
+                    ✍️ Create a New Task
+                </h2>
+
+                <p class="text-center mb-4">
+                    Every great achievement starts with a single task. Add yours and stay one step ahead.
+                </p>
+
+                {% if error %}
+                <div class="alert alert-danger text-center">
                     {{ error }}
                 </div>
-            {% endif %}
-            <form method="POST">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" name="title" class="form-control" id="title" required>
-                </div>
-                <div class="form-group">
-                    <label for="memo">Memo</label>
-                    <textarea name="memo" class="form-control" id="memo" ></textarea>
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" name="important" class="form-check-input" id="important">
-                    <label class="form-check-label" for="important">Important</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Save</button>
-            </form>
+                {% endif %}
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label><strong>Task Title</strong></label>
+                        <input type="text"
+                               name="title"
+                               class="form-control"
+                               id="title"
+                               placeholder="e.g. Complete project report"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><strong>Description</strong></label>
+                        <textarea
+                            name="memo"
+                            class="form-control"
+                            id="memo"
+                            rows="4"
+                            placeholder="Add notes, reminders or additional details..."></textarea>
+                    </div>
+
+                    <div class="form-group form-check">
+                        <input type="checkbox"
+                               name="important"
+                               class="form-check-input"
+                               id="important">
+
+                        <label class="form-check-label" for="important">
+                            ⭐ Mark this task as Important
+                        </label>
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-warning btn-block font-weight-bold py-2">
+                        💾 Save Task
+                    </button>
+
+                </form>
+
+                <hr style="background:white;">
+
+                <p class="text-center mb-0">
+                    💡 <strong>Tip:</strong> Breaking large goals into smaller tasks makes them easier to accomplish.
+                </p>
+
+            </div>
+
         </div>
+
     </div>
+</div>
+
 {% endblock %}

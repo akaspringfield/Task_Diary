@@ -2,76 +2,273 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="icon" type="image/png"  href="{% static 'todo/toplogo.png' %}">
-    <title>Todo Woo</title>
+<link rel="stylesheet"
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<link rel="icon" type="image/png" href="{% static 'todo/toplogo.png' %}">
+
+<title>Tick Do | Never Forget A Task</title>
+
+<style>
+
+html,body{
+    height:100%;
+    margin:0;
+}
+
+body{
+
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+
+    background:linear-gradient(
+    135deg,
+    #7C3AED 0%,
+    #6366F1 35%,
+    #4F46E5 65%,
+    #2563EB 100%);
+
+    background-attachment:fixed;
+    font-family:'Segoe UI',sans-serif;
+
+}
+
+.container{
+    flex:1;
+}
+
+/* ---------------- NAVBAR ---------------- */
+
+.navbar{
+
+    background:linear-gradient(
+    90deg,
+    #5B21B6,
+    #6D28D9,
+    #7C3AED);
+
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+
+}
+
+.navbar-brand{
+
+    font-size:28px;
+    font-weight:bold;
+    letter-spacing:1px;
+
+}
+
+.nav-link{
+
+    color:white!important;
+    transition:.3s;
+    margin-left:10px;
+    border-radius:8px;
+
+}
+
+.nav-link:hover{
+
+    background:rgba(255,255,255,.18);
+    transform:translateY(-2px);
+
+}
+
+/* ---------------- CONTENT ---------------- */
+
+.main-card{
+
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(8px);
+    border-radius:18px;
+    padding:25px;
+
+}
+
+/* ---------------- FOOTER ---------------- */
+
+footer{
+
+    background:linear-gradient(
+    90deg,
+    #5B21B6,
+    #6D28D9,
+    #7C3AED);
+
+    color:white;
+    text-align:center;
+    padding:18px;
+
+    box-shadow:0 -3px 15px rgba(0,0,0,.2);
+
+}
+
+footer a{
+
+    color:#FFD54F;
+    text-decoration:none;
+
+}
+
+footer a:hover{
+
+    text-decoration:underline;
+
+}
+
+</style>
+
 </head>
 
-<body background="{% static 'todo/background.jpg' %}" alt="Italian Trulli">
+<body>
 
-<nav class="navbar navbar-expand-md navbar-light bg-warning">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+
 <div class="container">
-    <a class="navbar-brand" href="{% url 'home' %}">
-         <img src="{% static 'todo/toplogo.png' %}" width="30" height="30" class="d-inline-block align-top">
-        <span>Tick Do</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-    {% if user.is_authenticated %}
-        <ul class="navbar-nav mr-auto">
 
-                <li class="nav-item {{ current }}">
-                    <a class="nav-link" href="{% url 'currenttodos' %}">Current</a>
-                </li>
-                <li class="nav-item {{ completed }}">
-                    <a class="nav-link" href="{% url 'completedtodos' %}">Completed</a>
-                </li>
-                <li class="nav-item {{ create }}">
-                    <a class="nav-link" href="{% url 'createtodo' %}">Create</a>
-                </li>
+<a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+    <img src="{% static 'todo/toplogo.png' %}"
+         width="40"
+         height="40"
+         class="mr-2 rounded-circle bg-white p-1">
 
-        </ul>
-    {% endif %}
-    <ul class="navbar-nav ml-auto">
-            {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a href="#" onclick="$('#signOutBtn').click()" class="nav-link">Logout</a>
-                    <form style='display: none;' method="POST" action="{% url 'logoutuser' %}">
-                        {% csrf_token %}
-                        <button id="signOutBtn" type="submit">Logout</button>
-                    </form>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signupuser' %}">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'loginuser' %}">Login</a>
-                </li>
-            {% endif %}
-        </ul>
-    </div>
+    <span class="font-weight-bold">✨ Tick Do</span>
+</a>>
+
+<button class="navbar-toggler"
+type="button"
+data-toggle="collapse"
+data-target="#navbarNav">
+
+<span class="navbar-toggler-icon"></span>
+
+</button>
+
+<div class="collapse navbar-collapse"
+id="navbarNav">
+
+{% if user.is_authenticated %}
+
+<ul class="navbar-nav mr-auto">
+
+<li class="nav-item {{ current }}">
+<a class="nav-link" href="{% url 'currenttodos' %}">
+📋 Current
+</a>
+</li>
+
+<li class="nav-item {{ completed }}">
+<a class="nav-link" href="{% url 'completedtodos' %}">
+✅ Completed
+</a>
+</li>
+
+<li class="nav-item {{ create }}">
+<a class="nav-link" href="{% url 'createtodo' %}">
+➕ Create
+</a>
+</li>
+
+</ul>
+
+{% endif %}
+
+<ul class="navbar-nav ml-auto">
+
+{% if user.is_authenticated %}
+
+<li class="nav-item">
+
+<a href="#"
+onclick="$('#signOutBtn').click()"
+class="nav-link">
+
+🚪 Logout
+
+</a>
+
+<form style="display:none;"
+method="POST"
+action="{% url 'logoutuser' %}">
+
+{% csrf_token %}
+
+<button id="signOutBtn"
+type="submit">
+
+Logout
+
+</button>
+
+</form>
+
+</li>
+
+{% else %}
+
+<li class="nav-item">
+
+<a class="nav-link"
+href="{% url 'signupuser' %}">
+
+📝 Sign Up
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link"
+href="{% url 'loginuser' %}">
+
+🔐 Login
+
+</a>
+
+</li>
+
+{% endif %}
+
+</ul>
+
 </div>
+
+</div>
+
 </nav>
 
-<div class="container">
-{% block content %}{% endblock %}
+<div class="container py-4">
 
+{% block content %}
+
+{% endblock %}
 
 </div>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<footer>
+
+<strong>✨ Tick Do</strong>
+
+<br>
+
+Stay Organized • Stay Productive • Never Forget a Task
+
+<br><br>
+
+© 2026 Tick Do. Crafted with ❤️ for Productivity.
+
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 </body>
 </html>

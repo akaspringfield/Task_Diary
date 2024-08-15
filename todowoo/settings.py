@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-uo+#6l4$hih9fv9f==o+!e#289$h)b0$=cm%n!p0u(b%u@r3&g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'tic-todo.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','localhost', 'tic-todo.herokuapp.com']
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://tic-todo.herokuapp.com']
 

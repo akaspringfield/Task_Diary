@@ -1,8 +1,46 @@
 {% extends 'todo/base.html' %}
 
-<h1>Home</h1>
-
 {% block content %}
 
-{% endblock %}
+<div class="jumbotron mt-5 text-center"
+     style="background: rgba(255,255,255,0.15);
+            color:white;
+            border-radius:20px;
+            padding:40px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.3);">
 
+    <h1 class="display-4 font-weight-bold mb-4">
+        Welcome to <span class="text-warning">Tick Do</span>
+    </h1>
+
+    <p class="lead">
+        Tick Do is your personal task management companion designed to help you stay organized,
+        boost productivity, and accomplish your daily goals. Create, manage, and complete tasks
+        with ease through a clean and intuitive interface.
+    </p>
+
+    <hr style="background:white;">
+
+    <h4 class="mt-4">What You Can Do</h4>
+
+    <div class="row mt-4">
+        <div class="col-md-6 text-left">
+            <p>✅ Create new tasks</p>
+            <p>✅ Update existing tasks</p>
+            <p>✅ Set task descriptions</p>
+        </div>
+
+        <div class="col-md-6 text-left">
+            <p>✅ Mark tasks as completed</p>
+            <p>✅ View current & completed tasks</p>
+            <p>✅ Manage your work efficiently</p>
+        </div>
+    </div>
+
+    <h3 class="mt-5 text-warning font-weight-bold">
+        🌟 Never Forget a Task Again! 🌟
+    </h3>
+
+</div>
+
+{% endblock %}

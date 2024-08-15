@@ -1,30 +1,96 @@
 {% extends "todo/base.html" %}
 
 {% block content %}
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-10">
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+
+        <div class="text-center text-white mb-4">
+
             {% if todos %}
-                <h1>{{ todos.count }} Current Todo{{ todos.count|pluralize }}</h1>
+                <h1 class="display-4 font-weight-bold">
+                    📋 My Current Tasks
+                </h1>
+
+                <p class="lead">
+                    You have
+                    <span class="badge badge-warning px-3 py-2">
+                        {{ todos.count }}
+                    </span>
+                    active task{{ todos.count|pluralize }} waiting to be completed.
+                </p>
+
             {% else %}
-                <h1>Current Todos</h1>
+
+                <h1 class="display-4 font-weight-bold">
+                    🎉 You're All Caught Up!
+                </h1>
+
+                <p class="lead">
+                    Great job! You don't have any pending tasks.
+                    Why not create a new one and stay productive?
+                </p>
+
             {% endif %}
+
         </div>
-    </div>
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-10">
+
         {% if todos %}
-            <div class="list-group">
+
+        <div class="card shadow-lg border-0"
+             style="background: rgba(255,255,255,0.15);
+                    backdrop-filter: blur(10px);
+                    border-radius:20px;">
+
+            <div class="list-group list-group-flush">
+
                 {% for todo in todos %}
-                    <a href="{% url 'viewtodo' todo.id %}" class="list-group-item list-group-item-action{% if todo.important %} list-group-item-danger{% endif %}"><b>{{ todo.title }}</b>{% if todo.memo %} - {{ todo.memo|truncatechars:30 }}{% endif %}</a>
+
+                <a href="{% url 'viewtodo' todo.id %}"
+                   class="list-group-item list-group-item-action {% if todo.important %}list-group-item-danger{% endif %}">
+
+                    <h5 class="mb-1">
+                        {% if todo.important %}
+                            ⭐
+                        {% endif %}
+                        <strong>{{ todo.title }}</strong>
+                    </h5>
+
+                    {% if todo.memo %}
+                        <small class="text-muted">
+                            {{ todo.memo|truncatechars:70 }}
+                        </small>
+                    {% endif %}
+
+                </a>
+
                 {% endfor %}
+
             </div>
-        {% else %}
-            <div class="text-center">
-                <h2>Looks like you don't have any todos! Nice work.</h2>
-            <br>
-            <a role="button" class="btn btn-primary" href="{% url 'createtodo' %}">New Todo</a>
-            </div>
-        {% endif %}
+
         </div>
+
+        <div class="text-center mt-4">
+            <a class="btn btn-warning btn-lg px-5"
+               href="{% url 'createtodo' %}">
+                ➕ Add New Task
+            </a>
+        </div>
+
+        {% else %}
+
+        <div class="text-center mt-5">
+
+            <a class="btn btn-warning btn-lg px-5"
+               href="{% url 'createtodo' %}">
+                🚀 Create Your First Task
+            </a>
+
+        </div>
+
+        {% endif %}
+
     </div>
+</div>
+
 {% endblock %}

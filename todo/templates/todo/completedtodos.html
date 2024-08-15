@@ -1,18 +1,88 @@
 {% extends "todo/base.html" %}
 
 {% block content %}
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-10">
-            <h1>Completed Todos</h1>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+
+        <div class="text-center text-white mb-4">
+
+            <h1 class="display-4 font-weight-bold">
+                ✅ Completed Tasks
+            </h1>
+
+            {% if todos %}
+                <p class="lead">
+                    Awesome! You've successfully completed
+                    <span class="badge badge-warning px-3 py-2">
+                        {{ todos.count }}
+                    </span>
+                    task{{ todos.count|pluralize }}.
+                    Keep up the great work!
+                </p>
+            {% else %}
+                <p class="lead">
+                    You haven't completed any tasks yet.
+                    Every completed task is a step closer to your goals!
+                </p>
+            {% endif %}
+
         </div>
-    </div>
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-10">
-            <div class="list-group">
+
+        {% if todos %}
+
+        <div class="card shadow-lg border-0"
+             style="background: rgba(255,255,255,0.15);
+                    backdrop-filter: blur(10px);
+                    border-radius:20px;">
+
+            <div class="list-group list-group-flush">
+
                 {% for todo in todos %}
-                    <a href="{% url 'viewtodo' todo.id %}" class="list-group-item list-group-item-action{% if todo.important %} list-group-item-danger{% endif %}"><b>{{ todo.title }}</b> - Completed {{ todo.datecompleted|date:'M j Y H:i' }}</a>
+
+                <a href="{% url 'viewtodo' todo.id %}"
+                   class="list-group-item list-group-item-action {% if todo.important %}list-group-item-success{% endif %}">
+
+                    <h5 class="mb-1">
+                        {% if todo.important %}
+                            ⭐
+                        {% else %}
+                            ✅
+                        {% endif %}
+                        <strong>{{ todo.title }}</strong>
+                    </h5>
+
+                    <small class="text-muted">
+                        Completed on
+                        <strong>{{ todo.datecompleted|date:'F d, Y • h:i A' }}</strong>
+                    </small>
+
+                </a>
+
                 {% endfor %}
+
             </div>
+
         </div>
+
+        {% else %}
+
+        <div class="text-center mt-5">
+
+            <h3 class="text-white">
+                📝 Start completing tasks to build your productivity streak!
+            </h3>
+
+            <a href="{% url 'createtodo' %}"
+               class="btn btn-warning btn-lg mt-4 px-5">
+                🚀 Create a New Task
+            </a>
+
+        </div>
+
+        {% endif %}
+
     </div>
+</div>
+
 {% endblock %}
