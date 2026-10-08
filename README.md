@@ -1,3 +1,4 @@
+<img width="904" height="438" alt="Screenshot (1402)" src="https://github.com/user-attachments/assets/2f29d2f0-905a-46df-bb94-def36f20f7a4" />
 # Task Diary
 
 ```
@@ -32,7 +33,7 @@ Tick Do is a modern and elegant task management application built with **Django*
 
 ## 📸 Screenshots
 
-> Add screenshots of your application here.
+<img width="904" height="438" alt="Screenshot (1402)" src="https://github.com/user-attachments/assets/71a23496-b9c9-4629-b133-7dca18f505c2" />
 
 ```
 Home Page
